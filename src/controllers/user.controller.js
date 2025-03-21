@@ -82,15 +82,15 @@ createUser = (req, res) => {
 // Fonction pour mettre à jour un utilisateur
 updateUser = (req, res) => {
     const userId = req.params.id; // Récupère l'ID de l'URL
-    const { name, email, age } = req.body; // Récupère les nouvelles données de l'utilisateur
+    const { name, email } = req.body; // Récupère les nouvelles données de l'utilisateur
 
-    if (!name || !email || !age) {
+    if (!name || !email) {
         return res.status(400).send({
             message: "Le nom, l'email et l'âge sont obligatoires"
         });
     }
 
-    userModel.updateUser(userId, { name, email, age }, (error, result) => {
+    userModel.updateUser(userId, { name, email }, (error, result) => {
         if (error) {
             res.status(500).send({
                 message: error.message || "Erreur lors de la mise à jour de l'utilisateur"
