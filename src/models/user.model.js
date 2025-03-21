@@ -42,8 +42,8 @@ const userModel = {
     },
     // Fonction pour créer un utilisateur
     createUser: (user, callback) => {
-        const query = 'INSERT INTO users (name, email, age) VALUES (?, ?, ?)';  // Requête pour insérer un utilisateur
-        databaseConnection.query(query, [user.name, user.email, user.age], (err, result) => {
+        const query = 'INSERT INTO users (name, email) VALUES (?, ?)';  // Requête pour insérer un utilisateur
+        databaseConnection.query(query, [user.name, user.email], (err, result) => {
             if (err) {
                 callback(err, null);  // Si erreur, on passe l'erreur
             } else {
@@ -53,8 +53,8 @@ const userModel = {
     },
     // Fonction pour mettre à jour un utilisateur
     updateUser: (id, user, callback) => {
-    const query = 'UPDATE users SET name = ?, email = ?, age = ? WHERE id = ?';  // Requête pour mettre à jour un utilisateur
-    databaseConnection.query(query, [user.name, user.email, user.age, id], (err, result) => {
+    const query = 'UPDATE users SET name = ?, email = ? WHERE id = ?';  // Requête pour mettre à jour un utilisateur
+    databaseConnection.query(query, [user.name, user.email, id], (err, result) => {
         if (err) {
             callback(err, null);  // Si erreur, on passe l'erreur
         } else {
